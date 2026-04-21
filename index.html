@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIZAR 3D | Architectural Visualization & Design</title>
     
-    <title>VIZAR 3D | Архитектурная визуализация и дизайн</title>
-    <meta name="description" content="Студия архитектурной визуализации VIZAR 3D. 3ds Max, Corona Renderer, AutoCAD.">
-    <meta property="og:title" content="VIZAR 3D | Студия визуализации">
-    <meta property="og:description" content="Фотореалистичные рендеры для архитекторов и девелоперов.">
-    <meta property="og:type" content="website">
-
     <style>
         :root {
             --bg: #0a0a0a;
-            --card-bg: #111111;
             --text-main: #ffffff;
             --text-dim: #999999;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -25,7 +19,7 @@
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -53,25 +47,24 @@
         .logo-nav {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 200;
-            letter-spacing: 5px;
+            gap: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
             text-decoration: none;
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
         }
 
         .logo-nav-icon {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             stroke: #fff;
             fill: none;
-            stroke-width: 1;
+            stroke-width: 2.5;
         }
 
         .nav-right { display: flex; align-items: center; gap: 30px; }
-        
         .lang-switcher { display: flex; gap: 12px; font-size: 0.75rem; border-right: 1px solid #333; padding-right: 20px; }
         .lang-btn { cursor: pointer; color: var(--text-dim); transition: 0.3s; text-transform: uppercase; }
         .lang-btn.active { color: #fff; font-weight: 700; border-bottom: 1px solid #fff; }
@@ -82,135 +75,76 @@
             margin-left: 20px;
         }
         .nav-links a:hover { color: #fff; }
+        .btn-contact { background: #fff; color: #000 !important; padding: 10px 20px; border-radius: 2px; font-weight: 800; }
 
-        .btn-contact { background: #fff; color: #000 !important; padding: 10px 20px; border-radius: 2px; font-weight: 600; }
-
-        /* ГЛАВНЫЙ ЭКРАН С ЛОГОТИПОМ */
+        /* ГЛАВНЫЙ ЭКРАН */
         header.hero {
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
             background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
         }
 
-        .main-logo-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        /* КУБ И СЕТКА (SVG) */
-        .main-logo-icon {
-            width: 120px;
-            height: 120px;
-        }
-
-        .grid-line {
-            stroke: rgba(255,255,255,0.15);
-            stroke-width: 0.5;
-        }
-
-        .cube-edge {
-            stroke: #fff;
-            stroke-width: 1;
-            fill: none;
-        }
-
-        .main-logo-text-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .main-logo-block { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .main-logo-icon { width: 140px; height: 140px; margin-bottom: 10px; }
+        .grid-line { stroke: rgba(255,255,255,0.1); stroke-width: 0.5; }
+        .cube-edge { stroke: #fff; stroke-width: 2.8; fill: none; }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
-            font-weight: 200;
-            letter-spacing: 0.25em;
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            line-height: 1;
+            margin-bottom: 10px;
         }
 
         .logo-subtitle {
-            font-size: 0.9rem;
-            font-weight: 300;
-            letter-spacing: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 12px;
             text-transform: uppercase;
             color: var(--text-dim);
-            position: relative;
+            margin-left: 12px;
         }
 
         /* СЕКЦИИ */
         section { max-width: 1400px; margin: 0 auto; padding: 100px 40px; }
-        h2 { font-size: 1.4rem; font-weight: 200; margin-bottom: 50px; letter-spacing: 0.3em; text-transform: uppercase; border-left: 2px solid #fff; padding-left: 25px; }
+        h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 50px; letter-spacing: 0.2em; text-transform: uppercase; border-left: 4px solid #fff; padding-left: 20px; }
 
         /* СОФТ */
-        .software-grid {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-        .soft-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-dim);
-            transition: var(--transition);
-        }
+        .software-grid { display: flex; gap: 40px; flex-wrap: wrap; }
+        .soft-item { display: flex; align-items: center; gap: 12px; color: var(--text-dim); transition: var(--transition); }
         .soft-item:hover { color: #fff; transform: translateY(-3px); }
-        .soft-icon { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-        .soft-name { font-size: 0.9rem; letter-spacing: 1px; }
+        .soft-icon { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .soft-name { font-size: 0.9rem; font-weight: 600; }
 
         /* ГАЛЕРЕЯ */
-        .projects-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
-            gap: 25px; 
-        }
-        .project-card { 
-            position: relative; 
-            aspect-ratio: 16 / 10; 
-            background: #111; 
-            overflow: hidden; 
-            cursor: pointer; 
-        }
-        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1); filter: brightness(0.7); }
-        .project-card:hover img { transform: scale(1.08); filter: brightness(1); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 25px; }
+        .project-card { aspect-ratio: 16 / 10; background: #111; overflow: hidden; cursor: pointer; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 1s var(--transition); filter: brightness(0.6); }
+        .project-card:hover img { transform: scale(1.05); filter: brightness(1); }
 
         /* КОНТАКТЫ */
         .contacts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; }
         .contact-group h3 { 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            color: #777; 
-            letter-spacing: 3px; 
-            margin-bottom: 25px; 
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 0.8rem; font-weight: 800; color: #555; letter-spacing: 2px; margin-bottom: 20px; 
+            display: flex; align-items: center; gap: 10px; text-transform: uppercase;
         }
-        .contact-group a, .contact-group p { display: block; color: #fff; text-decoration: none; font-size: 1.2rem; margin-bottom: 12px; transition: 0.3s; }
-        .contact-group a:hover { opacity: 0.6; }
+        .contact-group a, .contact-group p { display: block; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
 
         /* МОДАЛКА */
-        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; cursor: pointer; }
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
         .modal.active { display: flex; }
         .modal img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        footer { padding: 80px 40px; text-align: center; color: #333; font-size: 0.75rem; border-top: 1px solid #111; letter-spacing: 2px; }
+        footer { padding: 60px 40px; text-align: center; color: #333; font-size: 0.7rem; border-top: 1px solid #111; font-weight: 600; letter-spacing: 1px; }
 
         @media (max-width: 768px) {
             .nav-links a:not(.btn-contact) { display: none; }
-            section { padding: 60px 20px; }
-            .projects-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.2rem; }
-            .logo-subtitle { font-size: 0.7rem; }
-            .main-logo-icon { width: 80px; height: 80px; }
+            h1 { font-size: 3rem; }
+            .logo-subtitle { letter-spacing: 5px; font-size: 0.6rem; }
+            .main-logo-icon { width: 100px; height: 100px; }
         }
     </style>
 </head>
@@ -219,7 +153,7 @@
 <nav class="navbar">
     <div class="nav-container">
         <a href="#" class="logo-nav">
-            <svg class="logo-nav-icon" viewBox="0 0 100 100"><path d="M50 15 L15 35 L15 75 L50 95 L85 75 L85 35 L50 15 Z M50 95 L50 55 M15 35 L50 55 L85 35 M50 15 L85 35 Z M15 75 L50 95 Z M85 75 L50 95 Z" stroke-width="2.5"></path></svg>
+            <svg class="logo-nav-icon" viewBox="0 0 100 100"><path d="M50 15 L15 35 L15 75 L50 95 L85 75 L85 35 L50 15 Z M50 95 L50 55 M15 35 L50 55 L85 35 M50 15 L85 35 Z M15 75 L50 95 Z M85 75 L50 95 Z"></path></svg>
             VIZAR 3D
         </a>
         <div class="nav-right">
@@ -241,15 +175,13 @@
     <div class="main-logo-block">
         <svg class="main-logo-icon" viewBox="0 0 100 100">
             <path class="grid-line" d="M10 50 L50 10 L90 50 L50 90 L10 50 Z"></path>
-            <path class="grid-line" d="M30 30 L50 50 L70 30"></path>
-            <path class="grid-line" d="M30 70 L50 50 L70 70"></path>
-            <path class="cube-edge" d="M50 15 L15 35 L15 75 L50 95 L85 75 L85 35 L50 15 Z"></path>
-            <path class="cube-edge" d="M50 95 L50 55 M15 35 L50 55 L85 35"></path>
-            <path class="cube-edge" d="M50 15 L85 35 Z M15 75 L50 95 Z M85 75 L50 95 Z"></path>
+            <path class="grid-line" d="M30 30 L50 50 L70 30 M30 70 L50 50 L70 70"></path>
+            <path class="cube-edge" d="M50 15 L15 35 L15 75 L50 95 L85 75 L85 35 L50 15 Z M50 95 L50 55 M15 35 L50 55 L85 35"></path>
+            <path class="cube-edge" d="M50 15 L85 35 M15 75 L50 95 M85 75 L50 95"></path>
         </svg>
         <div class="main-logo-text-block">
             <h1>VIZAR 3D</h1>
-            <div class="logo-subtitle" data-key="h_sub">VISUALIZATION & DESIGN</div>
+            <div class="logo-subtitle">VISUALIZATION & DESIGN</div>
         </div>
     </div>
 </header>
@@ -261,7 +193,7 @@
 
 <section id="about">
     <h2 data-key="n_about">О студии</h2>
-    <p style="max-width: 800px; font-size: 1.2rem; color: var(--text-dim); margin-bottom: 40px;" data-key="a_text">
+    <p style="max-width: 800px; font-size: 1.2rem; color: var(--text-dim); margin-bottom: 40px; font-weight: 500;" data-key="a_text">
         Профессиональная команда визуализаторов. Мы создаем изображения, которые помогают продавать архитектурные идеи.
     </p>
 
@@ -272,7 +204,7 @@
         </div>
         <div class="soft-item">
             <svg class="soft-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg>
-            <span class="soft-name">Corona Renderer</span>
+            <span class="soft-name">Corona</span>
         </div>
         <div class="soft-item">
             <svg class="soft-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
@@ -289,28 +221,18 @@
     <h2 data-key="n_contact">Контакты</h2>
     <div class="contacts-container">
         <div class="contact-group">
-            <h3>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span data-key="c_phone">Телефон</span>
-            </h3>
-            <a href="tel:+99801409049">+998 01 409 049 (Наиль)</a>
+            <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span data-key="c_phone">Телефон</span></h3>
+            <a href="tel:+998901409049">+998 90 140 90 49 (Наиль)</a>
             <a href="tel:+998979828203">+998 97 982 8203 (Комилжон)</a>
         </div>
         <div class="contact-group">
-            <h3>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                <span>Telegram</span>
-            </h3>
+            <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg><span>Telegram</span></h3>
             <a href="https://t.me/nail0993" target="_blank">@nail0993</a>
             <a href="https://t.me/komiljon_arx" target="_blank">@komiljon_arx</a>
         </div>
         <div class="contact-group">
-            <h3>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                <span data-key="c_loc">Локация</span>
-            </h3>
-            <p>Узбекистан, Андижанская обл.</p>
-            <p style="font-size: 0.9rem; color: #444;">noilkhakimov@gmail.com</p>
+            <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span data-key="c_loc">Локация</span></h3>
+            <p>Узбекистан, Андижан</p>
         </div>
     </div>
 </section>
@@ -320,28 +242,25 @@
 </div>
 
 <footer>
-    &copy; 2026 VIZAR 3D. <span data-key="f_text">Все права защищены.</span>
+    &copy; 2026 VIZAR 3D. <span data-key="f_text">ALL RIGHTS RESERVED.</span>
 </footer>
 
 <script>
     const content = {
         ru: {
-            n_work: "Проекты", n_about: "О студии", n_contact: "Контакты",
-            h_sub: "VISUALIZATION & DESIGN",
+            n_work: "Проекты", n_about: "Студия", n_contact: "Контакты",
             a_text: "Профессиональная команда визуализаторов. Мы создаем изображения, которые помогают продавать архитектурные идеи.",
-            c_phone: "Позвонить", c_loc: "Адрес", f_text: "Все права защищены."
+            c_phone: "Позвонить", c_loc: "Адрес", f_text: "ВСЕ ПРАВА ЗАЩИЩЕНЫ."
         },
         uz: {
-            n_work: "Loyihalar", n_about: "Studiya haqida", n_contact: "Kontaktlar",
-            h_sub: "VISUALIZATION & DESIGN",
+            n_work: "Loyihalar", n_about: "Studiya", n_contact: "Kontaktlar",
             a_text: "Professional vizualizatorlar jamoasi. Biz arxitektura g'oyalarini sotishga yordam beradigan tasvirlarni yaratamiz.",
-            c_phone: "Telefon", c_loc: "Manzil", f_text: "Barcha huquqlar himoyalangan."
+            c_phone: "Telefon", c_loc: "Manzil", f_text: "BARCHA HUQUQLAR HIMOYALANGAN."
         },
         en: {
             n_work: "Projects", n_about: "Studio", n_contact: "Contact",
-            h_sub: "VISUALIZATION & DESIGN",
             a_text: "Professional team of 3D artists. We create imagery that helps sell architectural concepts.",
-            c_phone: "Call Us", c_loc: "Location", f_text: "All rights reserved."
+            c_phone: "Call", c_loc: "Location", f_text: "ALL RIGHTS RESERVED."
         }
     };
 
@@ -349,7 +268,7 @@
     for(let i=1; i<=10; i++) {
         const card = document.createElement('div');
         card.className = 'project-card';
-        card.innerHTML = `<img src="img/img${i}.jpg" alt="Vizar 3D Project" loading="lazy">`;
+        card.innerHTML = `<img src="img/img${i}.jpg" alt="Vizar 3D" loading="lazy">`;
         card.onclick = () => {
             document.getElementById('v-modal-img').src = `img/img${i}.jpg`;
             document.getElementById('v-modal').classList.add('active');
@@ -363,12 +282,11 @@
         });
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(lang).classList.add('active');
-        localStorage.setItem('vizar_pref_lang', lang);
+        localStorage.setItem('vizar_lang', lang);
     }
 
     window.onload = () => {
-        const saved = localStorage.getItem('vizar_pref_lang') || 'ru';
-        setLang(saved);
+        setLang(localStorage.getItem('vizar_lang') || 'ru');
     };
 </script>
 </body>
