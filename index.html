@@ -14,9 +14,8 @@
             --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Базовые настройки */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; } /* Плавный скролл */
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg);
@@ -26,12 +25,12 @@
             overflow-x: hidden;
         }
 
-        /* Навигация (МЕНЮ) */
+        /* НАВИГАЦИЯ */
         .navbar {
             position: fixed;
             top: 0; left: 0; width: 100%;
             z-index: 1000;
-            padding: 20px 0;
+            padding: 15px 0;
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -54,7 +53,23 @@
             font-size: 1.1rem;
         }
 
-        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        
+        /* Переключатель языков */
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            font-size: 0.7rem;
+            border-right: 1px solid #333;
+            padding-right: 20px;
+        }
+        .lang-btn {
+            cursor: pointer;
+            color: var(--text-dim);
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .lang-btn.active { color: #fff; font-weight: bold; }
 
         .nav-links a {
             text-decoration: none;
@@ -64,18 +79,9 @@
             letter-spacing: 2px;
             transition: var(--transition);
         }
-
         .nav-links a:hover { color: #fff; }
 
-        .btn-contact {
-            background: #fff;
-            color: #000 !important;
-            padding: 8px 16px;
-            border-radius: 2px;
-            font-weight: 600;
-        }
-
-        /* Главный экран */
+        /* ГЛАВНЫЙ ЭКРАН */
         header.hero {
             height: 100vh;
             display: flex;
@@ -84,7 +90,7 @@
             align-items: center;
             background: radial-gradient(circle at center, #161616 0%, #0a0a0a 100%);
             text-align: center;
-            padding: 80px 20px 20px 20px;
+            padding: 80px 20px;
         }
 
         h1 {
@@ -95,7 +101,14 @@
             margin-bottom: 10px;
         }
 
-        /* Секции */
+        .subtitle {
+            letter-spacing: 5px;
+            color: #555;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* СЕКЦИИ */
         section {
             max-width: 1400px;
             margin: 0 auto;
@@ -112,7 +125,7 @@
             padding-left: 20px;
         }
 
-        /* Сетка проектов */
+        /* ГРИД ПРОЕКТОВ */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -132,14 +145,12 @@
         }
 
         .project-card.visible { opacity: 1; transform: translateY(0); }
-
         .project-card img {
             width: 100%; height: 100%;
             object-fit: cover;
             transition: var(--transition);
             filter: grayscale(30%);
         }
-
         .project-card:hover img { transform: scale(1.08); filter: grayscale(0%); }
 
         .project-overlay {
@@ -149,10 +160,37 @@
             padding: 30px; opacity: 0;
             transition: var(--transition);
         }
-
         .project-card:hover .project-overlay { opacity: 1; }
 
-        /* Просмотр фото (Лайтбокс) */
+        /* КОНТАКТЫ */
+        .contacts-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            background: #111;
+            padding: 40px;
+            border-radius: 4px;
+        }
+
+        .contact-item p {
+            color: #555;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .contact-link {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            transition: 0.3s;
+        }
+        .contact-link:hover { opacity: 0.7; }
+
+        /* ЛАЙТБОКС */
         .lightbox {
             position: fixed; inset: 0;
             background: rgba(0,0,0,0.95);
@@ -165,7 +203,9 @@
         footer { padding: 60px 20px; text-align: center; color: #333; font-size: 0.8rem; border-top: 1px solid #111; }
 
         @media (max-width: 768px) {
+            .nav-right { gap: 15px; }
             .nav-links a:not(.btn-contact) { display: none; }
+            .lang-switcher { border: none; padding: 0; }
             .projects-grid { grid-template-columns: 1fr; }
             section { padding: 60px 20px; }
         }
@@ -176,38 +216,55 @@
 <nav class="navbar">
     <div class="nav-container">
         <a href="#" class="logo">VIZAR 3D</a>
-        <div class="nav-links">
-            <a href="#work">Проекты</a>
-            <a href="#about">О нас</a>
-            <a href="#contacts" class="btn-contact">Обсудить проект</a>
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <span class="lang-btn active" onclick="setLanguage('ru')">RU</span>
+                <span class="lang-btn" onclick="setLanguage('uz')">UZ</span>
+                <span class="lang-btn" onclick="setLanguage('en')">EN</span>
+            </div>
+            <div class="nav-links">
+                <a href="#work" data-key="nav_work">Проекты</a>
+                <a href="#about" data-key="nav_about">О нас</a>
+                <a href="#contacts" class="btn-contact" data-key="nav_contact">Контакты</a>
+            </div>
         </div>
     </div>
 </nav>
 
 <header class="hero">
     <h1>VIZAR 3D</h1>
-    <div class="subtitle" style="letter-spacing: 5px; color: #555; text-transform: uppercase;">Архитектурная визуализация</div>
+    <div class="subtitle" data-key="hero_sub">Архитектурная визуализация • Андижанская область</div>
 </header>
 
 <section id="work">
-    <h2>Проекты</h2>
+    <h2 data-key="sec_work">Проекты</h2>
     <div class="projects-grid" id="grid"></div>
 </section>
 
 <section id="about">
-    <h2>О студии</h2>
+    <h2 data-key="sec_about">О студии</h2>
     <div style="max-width: 800px; color: var(--text-dim); font-size: 1.1rem;">
-        <p>Мы создаем фотореалистичную 3D-визуализацию для архитекторов и застройщиков. Наша цель — передать атмосферу и масштаб будущего объекта до начала строительства.</p>
+        <p data-key="about_text">Команда профессионалов в сфере 3D-визуализации. Мы помогаем архитекторам и девелоперам увидеть будущие проекты в фотореалистичном качестве.</p>
     </div>
 </section>
 
 <section id="contacts">
-    <h2>Контакты</h2>
-    <div style="background: #111; padding: 40px; border-radius: 4px; display: inline-block;">
-        <p style="margin-bottom: 20px; color: #888;">Напишите нам для расчета стоимости:</p>
-        <div style="display: flex; gap: 30px;">
-            <a href="https://t.me/nail0993" target="_blank" style="color: #fff; text-decoration: none; border-bottom: 1px solid #333;">Telegram</a>
-            <a href="mailto:info@vizar3d.ru" style="color: #fff; text-decoration: none; border-bottom: 1px solid #333;">Email</a>
+    <h2 data-key="sec_contact">Связаться с нами</h2>
+    <div class="contacts-wrapper">
+        <div class="contact-item">
+            <p data-key="c_phones">Телефоны</p>
+            <a href="tel:+99801409049" class="contact-link">+998 01 409 049 (Наиль)</a>
+            <a href="tel:+998979828203" class="contact-link">+998 97 982 8203 (Комилжон)</a>
+        </div>
+        <div class="contact-item">
+            <p>Telegram</p>
+            <a href="https://t.me/nail0993" target="_blank" class="contact-link">@nail0993</a>
+            <a href="https://t.me/komiljon_arx" target="_blank" class="contact-link">@komiljon_arx</a>
+        </div>
+        <div class="contact-item">
+            <p data-key="c_mail">Email & Локация</p>
+            <a href="mailto:noilkhakimov@gmail.com" class="contact-link">noilkhakimov@gmail.com</a>
+            <span style="color: #fff; font-size: 1.1rem;" data-key="c_loc">Узбекистан, Андижанская обл.</span>
         </div>
     </div>
 </section>
@@ -216,15 +273,83 @@
     <img src="" alt="Full view" id="lightbox-img">
 </div>
 
-<footer>© 2026 VIZAR 3D</footer>
+<footer>© 2026 VIZAR 3D. <span data-key="footer_rights">Все права защищены.</span></footer>
 
 <script>
-    // ТВОЙ СПИСОК ФАЙЛОВ
+    // СЛОВАРЬ ЯЗЫКОВ
+    const translations = {
+        ru: {
+            nav_work: "Проекты",
+            nav_about: "О нас",
+            nav_contact: "Контакты",
+            hero_sub: "Архитектурная визуализация • Андижанская область",
+            sec_work: "Проекты",
+            sec_about: "О студии",
+            about_text: "Команда профессионалов в сфере 3D-визуализации. Мы помогаем архитекторам и девелоперам увидеть будущие проекты в фотореалистичном качестве.",
+            sec_contact: "Связаться с нами",
+            c_phones: "Телефоны",
+            c_mail: "Email & Локация",
+            c_loc: "Узбекистан, Андижанская обл.",
+            footer_rights: "Все права защищены."
+        },
+        uz: {
+            nav_work: "Loyihalar",
+            nav_about: "Biz haqimizda",
+            nav_contact: "Kontaktlar",
+            hero_sub: "Arxitektura vizualizatsiyasi • Andijon viloyati",
+            sec_work: "Loyihalar",
+            sec_about: "Studiya haqida",
+            about_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz arxitektor va ishlab chiquvchilarga kelajakdagi loyihalarni fotorealistik sifatda ko'rishga yordam beramiz.",
+            sec_contact: "Biz bilan bog'lanish",
+            c_phones: "Telefonlar",
+            c_mail: "Email va Manzil",
+            c_loc: "O'zbekiston, Andijon viloyati",
+            footer_rights: "Barcha huquqlar himoyalangan."
+        },
+        en: {
+            nav_work: "Projects",
+            nav_about: "About",
+            nav_contact: "Contact",
+            hero_sub: "Architectural Visualization • Andijan Region",
+            sec_work: "Projects",
+            sec_about: "About Studio",
+            about_text: "A team of professionals in 3D visualization. We help architects and developers see future projects in photorealistic quality.",
+            sec_contact: "Contact Us",
+            c_phones: "Phones",
+            c_mail: "Email & Location",
+            c_loc: "Uzbekistan, Andijan region",
+            footer_rights: "All rights reserved."
+        }
+    };
+
+    function setLanguage(lang) {
+        // Сохраняем выбор
+        localStorage.setItem('vizar_lang', lang);
+        
+        // Обновляем текст
+        document.querySelectorAll('[data-key]').forEach(elem => {
+            const key = elem.getAttribute('data-key');
+            elem.innerText = translations[lang][key];
+        });
+
+        // Визуал кнопок
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
+        });
+    }
+
+    // Загрузка сохраненного языка
+    window.onload = () => {
+        const savedLang = localStorage.getItem('vizar_lang') || 'ru';
+        setLanguage(savedLang);
+    };
+
+    // ГАЛЕРЕЯ (без изменений)
     const gallery = [
-        { file: "hero.jpg", title: "Главный проект" },
-        { file: "img1.jpg", title: "Экстерьер здания" },
-        { file: "img2.jpg", title: "Интерьерное решение" },
-        { file: "img3.jpg", title: "Детализация объекта" }
+        { file: "hero.jpg", title: "Project 1" },
+        { file: "img1.jpg", title: "Project 2" },
+        { file: "img2.jpg", title: "Project 3" },
+        { file: "img3.jpg", title: "Project 4" }
     ];
 
     const grid = document.getElementById('grid');
@@ -235,34 +360,10 @@
         const card = document.createElement('div');
         card.className = 'project-card';
         const imagePath = "img/" + item.file; 
-
-        card.innerHTML = `
-            <img src="${imagePath}" alt="${item.title}" loading="lazy">
-            <div class="project-overlay">
-                <div class="project-info">
-                    <p style="font-size: 0.7rem; color: #ccc; text-transform: uppercase; letter-spacing: 1px;">Project</p>
-                    <p style="font-weight: 400; letter-spacing: 1px;">${item.title}</p>
-                </div>
-            </div>
-        `;
-        
-        card.onclick = () => {
-            lbImg.src = imagePath;
-            lightbox.classList.add('active');
-        };
+        card.innerHTML = `<img src="${imagePath}" alt="${item.title}" loading="lazy"><div class="project-overlay"><p>${item.title}</p></div>`;
+        card.onclick = () => { lbImg.src = imagePath; lightbox.classList.add('active'); };
         grid.appendChild(card);
     });
 
     lightbox.onclick = () => lightbox.classList.remove('active');
-
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
-</script>
-
-</body>
-</html>
