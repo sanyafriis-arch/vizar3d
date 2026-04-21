@@ -35,7 +35,7 @@
 
             try {
                 // ЗАМЕНИ localhost НА СВОЙ IP ТУТ:
-                const res = await fetch('http://192.168.0.106/v1/chat/completions', {
+                const res = await fetch('http://192.168.0.106:1234/v1/chat/completions', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
