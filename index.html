@@ -62,7 +62,7 @@
 
         .btn-contact { background: #fff; color: #000 !important; padding: 8px 16px; border-radius: 2px; font-weight: 600; }
 
-        /* ФИЛЬТРЫ КАТЕГОРИЙ */
+        /* ФИЛЬТРЫ КАТЕГОРИЙ (ВКЛАДКИ) */
         .filter-container {
             display: flex;
             justify-content: center;
@@ -100,17 +100,16 @@
         h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 200; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
         .subtitle { letter-spacing: 5px; color: #555; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* СЕКЦИИ */
+        /* ГРИД ПРОЕКТОВ */
         section { max-width: 1400px; margin: 0 auto; padding: 100px 40px; }
         h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 50px; letter-spacing: 0.2em; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 20px; }
 
-        /* ГАЛЕРЕЯ */
         .projects-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
             gap: 30px; 
-            min-height: 400px;
         }
+        
         .project-card { 
             position: relative; 
             aspect-ratio: 16 / 10; 
@@ -119,10 +118,6 @@
             overflow: hidden; 
             cursor: pointer; 
             transition: var(--transition);
-        }
-        
-        .project-card.hidden {
-            display: none;
         }
 
         .project-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); filter: grayscale(30%); }
@@ -143,6 +138,7 @@
         .contact-link { display: block; color: #fff; text-decoration: none; font-size: 1.1rem; margin-bottom: 8px; transition: 0.3s; }
         .contact-link:hover { opacity: 0.7; }
 
+        /* ЛАЙТБОКС */
         .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; cursor: zoom-out; }
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 100%; max-height: 100%; border-radius: 4px; }
@@ -225,10 +221,9 @@
     <img src="" alt="Full view" id="lightbox-img">
 </div>
 
-<footer>© 2026 VIZAR 3D. <span data-key="f_rights">Все права защищены.</span></footer>
+<footer>© 2026 VIZAR 3D</footer>
 
 <script>
-    // ПЕРЕВОДЫ
     const langData = {
         ru: {
             n_work: "Проекты", n_about: "О нас", n_contact: "Контакты",
@@ -236,72 +231,61 @@
             s_work: "Проекты", s_about: "О студии", s_contact: "Контакты",
             f_all: "Все", f_ext: "Экстерьер", f_int: "Интерьер", f_dwg: "Чертежи",
             a_text: "Команда профессионалов в сфере 3D-визуализации. Мы помогаем архитекторам и девелоперам увидеть будущие проекты в фотореалистичном качестве.",
-            c_phone: "Телефоны", c_mail: "Email & Локация", c_loc: "Узбекистан, Андижанская обл.", f_rights: "Все права защищены."
+            c_phone: "Телефоны", c_mail: "Email & Локация", c_loc: "Узбекистан, Андижанская обл."
         },
         uz: {
             n_work: "Loyihalar", n_about: "Biz haqimizda", n_contact: "Kontaktlar",
             h_sub: "Arxitektura vizualizatsiyasi • Andijon viloyati",
             s_work: "Loyihalar", s_about: "Studiya haqida", s_contact: "Kontaktlar",
             f_all: "Barchasi", f_ext: "Eksteryer", f_int: "Interyer", f_dwg: "Chizmalar",
-            a_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz arxitektor va ishlab chiquvchilarga kelajakdagi loyihalarni fotorealistik sifatda ko'rishga yordam beramiz.",
-            c_phone: "Telefonlar", c_mail: "Email va Manzil", c_loc: "O'zbekiston, Andijon viloyati", f_rights: "Barcha huquqlar himoyalangan."
+            a_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz arxitektorlarga yordam beramiz.",
+            c_phone: "Telefonlar", c_mail: "Email va Manzil", c_loc: "O'zbekiston, Andijon viloyati"
         },
         en: {
             n_work: "Projects", n_about: "About", n_contact: "Contact",
             h_sub: "Architectural Visualization • Andijan Region",
             s_work: "Projects", s_about: "About Us", s_contact: "Contacts",
             f_all: "All", f_ext: "Exterior", f_int: "Interior", f_dwg: "Drawings",
-            a_text: "A team of professionals in 3D visualization. We help architects and developers see future projects in photorealistic quality.",
-            c_phone: "Phones", c_mail: "Email & Location", c_loc: "Uzbekistan, Andijan region", f_rights: "All rights reserved."
+            a_text: "Professional 3D visualization team. We help architects see their projects.",
+            c_phone: "Phones", c_mail: "Email & Location", c_loc: "Uzbekistan, Andijan region"
         }
     };
 
-    // СПИСОК РАБОТ (Добавляйте новые здесь)
-    // category может быть: 'ext' (экстерьер), 'int' (интерьер), 'dwg' (чертежи)
+    // ВОТ ЗДЕСЬ ТВОИ КАРТИНКИ И ИХ КАТЕГОРИИ
     const gallery = [
-        { file: "hero.jpg", title: "Modern Villa", category: "ext" },
-        { file: "img1.jpg", title: "Office Exterior", category: "ext" },
-        { file: "img2.jpg", title: "Cozy Living Room", category: "int" },
-        { file: "img3.jpg", title: "Master Plan", category: "dwg" },
-        // Пример добавления новой работы:
-        // { file: "img4.jpg", title: "Kitchen Design", category: "int" },
+        { file: "hero.jpg", title: "Экстерьер дома", category: "ext" },
+        { file: "img1.jpg", title: "Современный фасад", category: "ext" },
+        { file: "img2.jpg", title: "Гостиная", category: "int" },
+        { file: "img3.jpg", title: "Чертеж проекта", category: "dwg" },
+        { file: "img4.jpg", title: "Кухня", category: "int" },
+        { file: "img5.jpg", title: "Вилла", category: "ext" },
+        { file: "img6.jpg", title: "План этажа", category: "dwg" }
     ];
 
     const grid = document.getElementById('grid');
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightbox-img');
 
-    function renderGallery() {
+    function renderGallery(filter = 'all') {
         grid.innerHTML = '';
-        gallery.forEach((item, index) => {
-            const card = document.createElement('div');
-            card.className = `project-card ${item.category}`;
-            const imagePath = "img/" + item.file; 
-            card.innerHTML = `
-                <img src="${imagePath}" alt="${item.title}" loading="lazy">
-                <div class="project-overlay">
-                    <div style="color:white; padding:20px; letter-spacing:1px; text-transform:uppercase; font-size:0.8rem;">
-                        ${item.title}
-                    </div>
-                </div>`;
-            card.onclick = () => { lbImg.src = imagePath; lightbox.classList.add('active'); };
-            grid.appendChild(card);
+        gallery.forEach(item => {
+            if (filter === 'all' || item.category === filter) {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <img src="img/${item.file}" alt="${item.title}">
+                    <div class="project-overlay"><div style="padding:20px;">${item.title}</div></div>
+                `;
+                card.onclick = () => { lbImg.src = `img/${item.file}`; lightbox.classList.add('active'); };
+                grid.appendChild(card);
+            }
         });
     }
 
     function filterProjects(cat) {
-        // Меняем активную кнопку
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
-
-        const cards = document.querySelectorAll('.project-card');
-        cards.forEach(card => {
-            if (cat === 'all' || card.classList.contains(cat)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+        renderGallery(cat);
     }
 
     function changeLang(lang) {
@@ -322,6 +306,5 @@
 
     lightbox.onclick = () => lightbox.classList.remove('active');
 </script>
-
 </body>
 </html>
