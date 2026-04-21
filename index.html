@@ -25,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* НАВИГАЦИЯ */
         .navbar {
             position: fixed;
             top: 0; left: 0; width: 100%;
@@ -62,7 +61,6 @@
 
         .btn-contact { background: #fff; color: #000 !important; padding: 8px 16px; border-radius: 2px; font-weight: 600; }
 
-        /* ГЛАВНЫЙ ЭКРАН */
         header.hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -73,11 +71,41 @@
         h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 200; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
         .subtitle { letter-spacing: 5px; color: #555; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* СЕКЦИИ */
-        section { max-width: 1400px; margin: 0 auto; padding: 100px 40px; }
-        h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 50px; letter-spacing: 0.2em; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 20px; }
+        section { max-width: 1400px; margin: 0 auto; padding: 80px 40px; }
+        h2 { font-size: 1.3rem; font-weight: 300; margin-bottom: 40px; letter-spacing: 0.2em; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 20px; }
 
-        /* ГАЛЕРЕЯ (СЕТКА) */
+        /* СОФТ ЛОГОТИПЫ */
+        .software-grid {
+            display: flex;
+            gap: 35px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .soft-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            filter: grayscale(1);
+            opacity: 0.5;
+            transition: 0.4s ease;
+        }
+        .soft-item:hover {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+        .soft-icon {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+        .soft-name {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 300;
+            color: #ccc;
+        }
+
         .projects-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
@@ -104,13 +132,11 @@
         }
         .project-card:hover .project-overlay { opacity: 1; }
 
-        /* КОНТАКТЫ */
         .contacts-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; background: #111; padding: 40px; border-radius: 4px; }
         .contact-item p { color: #555; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; }
         .contact-link { display: block; color: #fff; text-decoration: none; font-size: 1.1rem; margin-bottom: 8px; transition: 0.3s; }
         .contact-link:hover { opacity: 0.7; }
 
-        /* ЛАЙТБОКС */
         .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; cursor: zoom-out; }
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 100%; max-height: 100%; border-radius: 4px; }
@@ -120,6 +146,7 @@
         @media (max-width: 768px) {
             .nav-links a:not(.btn-contact) { display: none; }
             .projects-grid { grid-template-columns: 1fr; }
+            .software-grid { gap: 25px; }
         }
     </style>
 </head>
@@ -157,6 +184,25 @@
     <h2 data-key="s_about">О студии</h2>
     <div style="max-width: 800px; color: var(--text-dim); font-size: 1.1rem;">
         <p data-key="a_text">Команда профессионалов в сфере 3D-визуализации. Мы помогаем архитекторам и девелоперам увидеть будущие проекты в фотореалистичном качестве.</p>
+    </div>
+
+    <div class="software-grid">
+        <div class="soft-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Autodesk_3ds_Max_logo.svg" class="soft-icon" alt="3ds Max">
+            <span class="soft-name">3ds Max</span>
+        </div>
+        <div class="soft-item">
+            <img src="https://corona-renderer.com/favicon.ico" class="soft-icon" alt="Corona">
+            <span class="soft-name">Corona Renderer</span>
+        </div>
+        <div class="soft-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Autocad_logo.svg" class="soft-icon" alt="AutoCAD">
+            <span class="soft-name">AutoCAD</span>
+        </div>
+        <div class="soft-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" class="soft-icon" alt="Photoshop">
+            <span class="soft-name">Photoshop</span>
+        </div>
     </div>
 </section>
 
@@ -200,7 +246,7 @@
             n_work: "Loyihalar", n_about: "Biz haqimizda", n_contact: "Kontaktlar",
             h_sub: "Arxitektura vizualizatsiyasi • Andijon viloyati",
             s_work: "Loyihalar", s_about: "Studiya haqida", s_contact: "Kontaktlar",
-            a_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz kelajakdagi loyihalarni ko'rishga yordam beramiz.",
+            a_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz kelajakdagi loyihalarni fotorealistik sifatda ko'rishga yordam beramiz.",
             c_phone: "Telefonlar", c_mail: "Email va Manzil", c_loc: "O'zbekiston, Andijon viloyati", f_rights: "Barcha huquqlar himoyalangan."
         },
         en: {
@@ -212,18 +258,13 @@
         }
     };
 
-    // СПИСОК ИЗ 10 КАРТИНОК
+    // ГАЛЕРЕЯ (10 КАРТИНОК)
     const gallery = [
-        { file: "img1.jpg", title: "Project 1" },
-        { file: "img2.jpg", title: "Project 2" },
-        { file: "img3.jpg", title: "Project 3" },
-        { file: "img4.jpg", title: "Project 4" },
-        { file: "img5.jpg", title: "Project 5" },
-        { file: "img6.jpg", title: "Project 6" },
-        { file: "img7.jpg", title: "Project 7" },
-        { file: "img8.jpg", title: "Project 8" },
-        { file: "img9.jpg", title: "Project 9" },
-        { file: "img10.jpg", title: "Project 10" }
+        { file: "img1.jpg", title: "Project 1" }, { file: "img2.jpg", title: "Project 2" },
+        { file: "img3.jpg", title: "Project 3" }, { file: "img4.jpg", title: "Project 4" },
+        { file: "img5.jpg", title: "Project 5" }, { file: "img6.jpg", title: "Project 6" },
+        { file: "img7.jpg", title: "Project 7" }, { file: "img8.jpg", title: "Project 8" },
+        { file: "img9.jpg", title: "Project 9" }, { file: "img10.jpg", title: "Project 10" }
     ];
 
     const grid = document.getElementById('grid');
