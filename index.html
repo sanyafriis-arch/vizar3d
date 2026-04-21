@@ -14,7 +14,9 @@
             --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
+        /* Базовые настройки */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; } /* Плавный скролл */
 
         body {
             background-color: var(--bg);
@@ -22,6 +24,55 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* Навигация (МЕНЮ) */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 200;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: #fff; }
+
+        .btn-contact {
+            background: #fff;
+            color: #000 !important;
+            padding: 8px 16px;
+            border-radius: 2px;
+            font-weight: 600;
         }
 
         /* Главный экран */
@@ -33,7 +84,7 @@
             align-items: center;
             background: radial-gradient(circle at center, #161616 0%, #0a0a0a 100%);
             text-align: center;
-            padding: 20px;
+            padding: 80px 20px 20px 20px;
         }
 
         h1 {
@@ -44,14 +95,7 @@
             margin-bottom: 10px;
         }
 
-        .subtitle {
-            font-size: clamp(0.8rem, 2vw, 1.1rem);
-            color: var(--text-dim);
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-        }
-
-        /* Сетка проектов */
+        /* Секции */
         section {
             max-width: 1400px;
             margin: 0 auto;
@@ -59,15 +103,16 @@
         }
 
         h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 300;
             margin-bottom: 50px;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             border-left: 3px solid var(--accent);
             padding-left: 20px;
         }
 
+        /* Сетка проектов */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -89,8 +134,7 @@
         .project-card.visible { opacity: 1; transform: translateY(0); }
 
         .project-card img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             transition: var(--transition);
             filter: grayscale(30%);
@@ -99,37 +143,29 @@
         .project-card:hover img { transform: scale(1.08); filter: grayscale(0%); }
 
         .project-overlay {
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-            opacity: 0;
+            display: flex; align-items: flex-end;
+            padding: 30px; opacity: 0;
             transition: var(--transition);
         }
 
         .project-card:hover .project-overlay { opacity: 1; }
 
-        /* Просмотр фото */
+        /* Просмотр фото (Лайтбокс) */
         .lightbox {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background: rgba(0,0,0,0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-            cursor: zoom-out;
+            display: none; justify-content: center; align-items: center;
+            z-index: 2000; padding: 20px; cursor: zoom-out;
         }
-
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 100%; max-height: 100%; border-radius: 4px; }
 
-        footer { padding: 80px 20px; text-align: center; color: #444; font-size: 0.8rem; }
+        footer { padding: 60px 20px; text-align: center; color: #333; font-size: 0.8rem; border-top: 1px solid #111; }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .nav-links a:not(.btn-contact) { display: none; }
             .projects-grid { grid-template-columns: 1fr; }
             section { padding: 60px 20px; }
         }
@@ -137,14 +173,43 @@
 </head>
 <body>
 
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="logo">VIZAR 3D</a>
+        <div class="nav-links">
+            <a href="#work">Проекты</a>
+            <a href="#about">О нас</a>
+            <a href="#contacts" class="btn-contact">Обсудить проект</a>
+        </div>
+    </div>
+</nav>
+
 <header class="hero">
     <h1>VIZAR 3D</h1>
-    <div class="subtitle">Архитектурная визуализация</div>
+    <div class="subtitle" style="letter-spacing: 5px; color: #555; text-transform: uppercase;">Архитектурная визуализация</div>
 </header>
 
 <section id="work">
     <h2>Проекты</h2>
     <div class="projects-grid" id="grid"></div>
+</section>
+
+<section id="about">
+    <h2>О студии</h2>
+    <div style="max-width: 800px; color: var(--text-dim); font-size: 1.1rem;">
+        <p>Мы создаем фотореалистичную 3D-визуализацию для архитекторов и застройщиков. Наша цель — передать атмосферу и масштаб будущего объекта до начала строительства.</p>
+    </div>
+</section>
+
+<section id="contacts">
+    <h2>Контакты</h2>
+    <div style="background: #111; padding: 40px; border-radius: 4px; display: inline-block;">
+        <p style="margin-bottom: 20px; color: #888;">Напишите нам для расчета стоимости:</p>
+        <div style="display: flex; gap: 30px;">
+            <a href="https://t.me/your_nick" target="_blank" style="color: #fff; text-decoration: none; border-bottom: 1px solid #333;">Telegram</a>
+            <a href="mailto:info@vizar3d.ru" style="color: #fff; text-decoration: none; border-bottom: 1px solid #333;">Email</a>
+        </div>
+    </div>
 </section>
 
 <div class="lightbox" id="lightbox">
@@ -157,9 +222,9 @@
     // ТВОЙ СПИСОК ФАЙЛОВ
     const gallery = [
         { file: "hero.jpg", title: "Главный проект" },
-        { file: "img1.jpg", title: "Визуализация экстерьера" },
+        { file: "img1.jpg", title: "Экстерьер здания" },
         { file: "img2.jpg", title: "Интерьерное решение" },
-        { file: "img3.jpg", title: "Детали объекта" }
+        { file: "img3.jpg", title: "Детализация объекта" }
     ];
 
     const grid = document.getElementById('grid');
@@ -169,8 +234,6 @@
     gallery.forEach((item) => {
         const card = document.createElement('div');
         card.className = 'project-card';
-        
-        // Указываем путь к папке img
         const imagePath = "img/" + item.file; 
 
         card.innerHTML = `
@@ -187,13 +250,11 @@
             lbImg.src = imagePath;
             lightbox.classList.add('active');
         };
-        
         grid.appendChild(card);
     });
 
     lightbox.onclick = () => lightbox.classList.remove('active');
 
-    // Анимация появления
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('visible');
