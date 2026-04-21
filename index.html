@@ -50,7 +50,7 @@
         .nav-right { display: flex; align-items: center; gap: 30px; }
         
         .lang-switcher { display: flex; gap: 10px; font-size: 0.75rem; border-right: 1px solid #333; padding-right: 20px; }
-        .lang-btn { cursor: pointer; color: var(--text-dim); transition: 0.3s; text-transform: uppercase; font-weight: 400; }
+        .lang-btn { cursor: pointer; color: var(--text-dim); transition: 0.3s; text-transform: uppercase; }
         .lang-btn.active { color: #fff; font-weight: 700; border-bottom: 1px solid #fff; }
 
         .nav-links { display: flex; align-items: center; gap: 20px; }
@@ -61,6 +61,33 @@
         .nav-links a:hover { color: #fff; }
 
         .btn-contact { background: #fff; color: #000 !important; padding: 8px 16px; border-radius: 2px; font-weight: 600; }
+
+        /* ФИЛЬТРЫ КАТЕГОРИЙ */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #222;
+            color: var(--text-dim);
+            padding: 8px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            border-color: #fff;
+            color: #fff;
+        }
 
         /* ГЛАВНЫЙ ЭКРАН */
         header.hero {
@@ -78,11 +105,37 @@
         h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 50px; letter-spacing: 0.2em; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 20px; }
 
         /* ГАЛЕРЕЯ */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px; }
-        .project-card { position: relative; aspect-ratio: 16 / 10; background-color: var(--card-bg); border-radius: 4px; overflow: hidden; cursor: pointer; opacity: 0; transform: translateY(30px); transition: var(--transition); }
-        .project-card.visible { opacity: 1; transform: translateY(0); }
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
+            gap: 30px; 
+            min-height: 400px;
+        }
+        .project-card { 
+            position: relative; 
+            aspect-ratio: 16 / 10; 
+            background-color: var(--card-bg); 
+            border-radius: 4px; 
+            overflow: hidden; 
+            cursor: pointer; 
+            transition: var(--transition);
+        }
+        
+        .project-card.hidden {
+            display: none;
+        }
+
         .project-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); filter: grayscale(30%); }
         .project-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
+
+        .project-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+            display: flex; align-items: flex-end;
+            padding: 30px; opacity: 0;
+            transition: var(--transition);
+        }
+        .project-card:hover .project-overlay { opacity: 1; }
 
         /* КОНТАКТЫ */
         .contacts-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; background: #111; padding: 40px; border-radius: 4px; }
@@ -98,7 +151,6 @@
 
         @media (max-width: 768px) {
             .nav-links a:not(.btn-contact) { display: none; }
-            .lang-switcher { border: none; padding: 0; }
             .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -130,6 +182,14 @@
 
 <section id="work">
     <h2 data-key="s_work">Проекты</h2>
+    
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterProjects('all')" data-key="f_all">Все</button>
+        <button class="filter-btn" onclick="filterProjects('ext')" data-key="f_ext">Экстерьер</button>
+        <button class="filter-btn" onclick="filterProjects('int')" data-key="f_int">Интерьер</button>
+        <button class="filter-btn" onclick="filterProjects('dwg')" data-key="f_dwg">Чертежи</button>
+    </div>
+
     <div class="projects-grid" id="grid"></div>
 </section>
 
@@ -174,6 +234,7 @@
             n_work: "Проекты", n_about: "О нас", n_contact: "Контакты",
             h_sub: "Архитектурная визуализация • Андижанская область",
             s_work: "Проекты", s_about: "О студии", s_contact: "Контакты",
+            f_all: "Все", f_ext: "Экстерьер", f_int: "Интерьер", f_dwg: "Чертежи",
             a_text: "Команда профессионалов в сфере 3D-визуализации. Мы помогаем архитекторам и девелоперам увидеть будущие проекты в фотореалистичном качестве.",
             c_phone: "Телефоны", c_mail: "Email & Локация", c_loc: "Узбекистан, Андижанская обл.", f_rights: "Все права защищены."
         },
@@ -181,6 +242,7 @@
             n_work: "Loyihalar", n_about: "Biz haqimizda", n_contact: "Kontaktlar",
             h_sub: "Arxitektura vizualizatsiyasi • Andijon viloyati",
             s_work: "Loyihalar", s_about: "Studiya haqida", s_contact: "Kontaktlar",
+            f_all: "Barchasi", f_ext: "Eksteryer", f_int: "Interyer", f_dwg: "Chizmalar",
             a_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz arxitektor va ishlab chiquvchilarga kelajakdagi loyihalarni fotorealistik sifatda ko'rishga yordam beramiz.",
             c_phone: "Telefonlar", c_mail: "Email va Manzil", c_loc: "O'zbekiston, Andijon viloyati", f_rights: "Barcha huquqlar himoyalangan."
         },
@@ -188,55 +250,77 @@
             n_work: "Projects", n_about: "About", n_contact: "Contact",
             h_sub: "Architectural Visualization • Andijan Region",
             s_work: "Projects", s_about: "About Us", s_contact: "Contacts",
+            f_all: "All", f_ext: "Exterior", f_int: "Interior", f_dwg: "Drawings",
             a_text: "A team of professionals in 3D visualization. We help architects and developers see future projects in photorealistic quality.",
             c_phone: "Phones", c_mail: "Email & Location", c_loc: "Uzbekistan, Andijan region", f_rights: "All rights reserved."
         }
     };
 
-    function changeLang(lang) {
-        // Меняем текст
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            el.innerText = langData[lang][key];
-        });
-        // Меняем активную кнопку
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('btn-' + lang).classList.add('active');
-        localStorage.setItem('vizar_lang', lang);
-    }
-
-    // При загрузке ставим сохраненный язык
-    window.onload = () => {
-        const saved = localStorage.getItem('vizar_lang') || 'ru';
-        changeLang(saved);
-    };
-
-    // ГАЛЕРЕЯ
+    // СПИСОК РАБОТ (Добавляйте новые здесь)
+    // category может быть: 'ext' (экстерьер), 'int' (интерьер), 'dwg' (чертежи)
     const gallery = [
-        { file: "hero.jpg", title: "Project 1" },
-        { file: "img1.jpg", title: "Project 2" },
-        { file: "img2.jpg", title: "Project 3" },
-        { file: "img3.jpg", title: "Project 4" }
+        { file: "hero.jpg", title: "Modern Villa", category: "ext" },
+        { file: "img1.jpg", title: "Office Exterior", category: "ext" },
+        { file: "img2.jpg", title: "Cozy Living Room", category: "int" },
+        { file: "img3.jpg", title: "Master Plan", category: "dwg" },
+        // Пример добавления новой работы:
+        // { file: "img4.jpg", title: "Kitchen Design", category: "int" },
     ];
 
     const grid = document.getElementById('grid');
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightbox-img');
 
-    gallery.forEach((item) => {
-        const card = document.createElement('div');
-        card.className = 'project-card';
-        const imagePath = "img/" + item.file; 
-        card.innerHTML = `<img src="${imagePath}" alt="${item.title}" loading="lazy"><div class="project-overlay"><div style="color:white; padding:20px;">${item.title}</div></div>`;
-        card.onclick = () => { lbImg.src = imagePath; lightbox.classList.add('active'); };
-        grid.appendChild(card);
-    });
+    function renderGallery() {
+        grid.innerHTML = '';
+        gallery.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = `project-card ${item.category}`;
+            const imagePath = "img/" + item.file; 
+            card.innerHTML = `
+                <img src="${imagePath}" alt="${item.title}" loading="lazy">
+                <div class="project-overlay">
+                    <div style="color:white; padding:20px; letter-spacing:1px; text-transform:uppercase; font-size:0.8rem;">
+                        ${item.title}
+                    </div>
+                </div>`;
+            card.onclick = () => { lbImg.src = imagePath; lightbox.classList.add('active'); };
+            grid.appendChild(card);
+        });
+    }
+
+    function filterProjects(cat) {
+        // Меняем активную кнопку
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            if (cat === 'all' || card.classList.contains(cat)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function changeLang(lang) {
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            el.innerText = langData[lang][key];
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + lang).classList.add('active');
+        localStorage.setItem('vizar_lang', lang);
+    }
+
+    window.onload = () => {
+        renderGallery();
+        const saved = localStorage.getItem('vizar_lang') || 'ru';
+        changeLang(saved);
+    };
 
     lightbox.onclick = () => lightbox.classList.remove('active');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
 </script>
 
 </body>
