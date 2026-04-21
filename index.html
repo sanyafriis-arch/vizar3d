@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>VIZAR 3D | Архитектурная визуализация</title>
-    <meta name="description" content="Профессиональная 3D визуализация в Андижане. 3ds Max, Corona, AutoCAD и Photoshop.">
+    <title>VIZAR 3D | Архитектурная визуализация и дизайн</title>
+    <meta name="description" content="Студия архитектурной визуализации VIZAR 3D. 3ds Max, Corona Renderer, AutoCAD.">
     <meta property="og:title" content="VIZAR 3D | Студия визуализации">
-    <meta property="og:description" content="Создаем фотореалистичные рендеры для архитекторов и девелоперов.">
+    <meta property="og:description" content="Фотореалистичные рендеры для архитекторов и девелоперов.">
     <meta property="og:type" content="website">
 
     <style>
@@ -15,8 +15,7 @@
             --bg: #0a0a0a;
             --card-bg: #111111;
             --text-main: #ffffff;
-            --text-dim: #888888;
-            --accent: #ffffff;
+            --text-dim: #999999;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -51,7 +50,25 @@
             align-items: center;
         }
 
-        .logo { font-weight: 200; letter-spacing: 5px; text-decoration: none; color: #fff; font-size: 1.2rem; text-transform: uppercase; }
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 200;
+            letter-spacing: 5px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .logo-nav-icon {
+            width: 20px;
+            height: 20px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 1;
+        }
 
         .nav-right { display: flex; align-items: center; gap: 30px; }
         
@@ -68,16 +85,64 @@
 
         .btn-contact { background: #fff; color: #000 !important; padding: 10px 20px; border-radius: 2px; font-weight: 600; }
 
-        /* ГЛАВНЫЙ ЭКРАН */
+        /* ГЛАВНЫЙ ЭКРАН С ЛОГОТИПОМ */
         header.hero {
             height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
             background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
         }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 100; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
-        .subtitle { letter-spacing: 8px; color: #555; text-transform: uppercase; font-size: 0.85rem; }
+        .main-logo-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* КУБ И СЕТКА (SVG) */
+        .main-logo-icon {
+            width: 120px;
+            height: 120px;
+        }
+
+        .grid-line {
+            stroke: rgba(255,255,255,0.15);
+            stroke-width: 0.5;
+        }
+
+        .cube-edge {
+            stroke: #fff;
+            stroke-width: 1;
+            fill: none;
+        }
+
+        .main-logo-text-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 200;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            position: relative;
+        }
 
         /* СЕКЦИИ */
         section { max-width: 1400px; margin: 0 auto; padding: 100px 40px; }
@@ -143,6 +208,9 @@
             .nav-links a:not(.btn-contact) { display: none; }
             section { padding: 60px 20px; }
             .projects-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .logo-subtitle { font-size: 0.7rem; }
+            .main-logo-icon { width: 80px; height: 80px; }
         }
     </style>
 </head>
@@ -150,7 +218,10 @@
 
 <nav class="navbar">
     <div class="nav-container">
-        <a href="#" class="logo">VIZAR 3D</a>
+        <a href="#" class="logo-nav">
+            <svg class="logo-nav-icon" viewBox="0 0 100 100"><path d="M50 15 L15 35 L15 75 L50 95 L85 75 L85 35 L50 15 Z M50 95 L50 55 M15 35 L50 55 L85 35 M50 15 L85 35 Z M15 75 L50 95 Z M85 75 L50 95 Z" stroke-width="2.5"></path></svg>
+            VIZAR 3D
+        </a>
         <div class="nav-right">
             <div class="lang-switcher">
                 <span id="ru" class="lang-btn active" onclick="setLang('ru')">RU</span>
@@ -167,8 +238,20 @@
 </nav>
 
 <header class="hero">
-    <h1>VIZAR 3D</h1>
-    <div class="subtitle" data-key="h_sub">Architectural Visualization Studio</div>
+    <div class="main-logo-block">
+        <svg class="main-logo-icon" viewBox="0 0 100 100">
+            <path class="grid-line" d="M10 50 L50 10 L90 50 L50 90 L10 50 Z"></path>
+            <path class="grid-line" d="M30 30 L50 50 L70 30"></path>
+            <path class="grid-line" d="M30 70 L50 50 L70 70"></path>
+            <path class="cube-edge" d="M50 15 L15 35 L15 75 L50 95 L85 75 L85 35 L50 15 Z"></path>
+            <path class="cube-edge" d="M50 95 L50 55 M15 35 L50 55 L85 35"></path>
+            <path class="cube-edge" d="M50 15 L85 35 Z M15 75 L50 95 Z M85 75 L50 95 Z"></path>
+        </svg>
+        <div class="main-logo-text-block">
+            <h1>VIZAR 3D</h1>
+            <div class="logo-subtitle" data-key="h_sub">VISUALIZATION & DESIGN</div>
+        </div>
+    </div>
 </header>
 
 <section id="work">
@@ -244,19 +327,19 @@
     const content = {
         ru: {
             n_work: "Проекты", n_about: "О студии", n_contact: "Контакты",
-            h_sub: "Студия архитектурной визуализации",
+            h_sub: "VISUALIZATION & DESIGN",
             a_text: "Профессиональная команда визуализаторов. Мы создаем изображения, которые помогают продавать архитектурные идеи.",
             c_phone: "Позвонить", c_loc: "Адрес", f_text: "Все права защищены."
         },
         uz: {
             n_work: "Loyihalar", n_about: "Studiya haqida", n_contact: "Kontaktlar",
-            h_sub: "Arxitektura vizualizatsiyasi studiyasi",
+            h_sub: "VISUALIZATION & DESIGN",
             a_text: "Professional vizualizatorlar jamoasi. Biz arxitektura g'oyalarini sotishga yordam beradigan tasvirlarni yaratamiz.",
             c_phone: "Telefon", c_loc: "Manzil", f_text: "Barcha huquqlar himoyalangan."
         },
         en: {
             n_work: "Projects", n_about: "Studio", n_contact: "Contact",
-            h_sub: "Architectural Visualization Studio",
+            h_sub: "VISUALIZATION & DESIGN",
             a_text: "Professional team of 3D artists. We create imagery that helps sell architectural concepts.",
             c_phone: "Call Us", c_loc: "Location", f_text: "All rights reserved."
         }
