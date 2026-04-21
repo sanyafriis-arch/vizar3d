@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>VIZAR 3D | Архитектурная визуализация</title>
-    <meta name="description" content="Профессиональная 3D визуализация в Андижанской области. 3ds Max, Corona Renderer, AutoCAD.">
+    <meta name="description" content="Профессиональная 3D визуализация в Андижане. 3ds Max, Corona, AutoCAD и Photoshop.">
     <meta property="og:title" content="VIZAR 3D | Студия визуализации">
-    <meta property="og:description" content="Фотореалистичные рендеры экстерьеров и интерьеров. Качество и сроки.">
+    <meta property="og:description" content="Создаем фотореалистичные рендеры для архитекторов и девелоперов.">
     <meta property="og:type" content="website">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
         :root {
@@ -28,7 +26,7 @@
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -39,8 +37,8 @@
             top: 0; left: 0; width: 100%;
             z-index: 1000;
             padding: 20px 0;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -53,20 +51,13 @@
             align-items: center;
         }
 
-        .logo { 
-            font-weight: 200; 
-            letter-spacing: 5px; 
-            text-decoration: none; 
-            color: #fff; 
-            font-size: 1.2rem; 
-            text-transform: uppercase;
-        }
+        .logo { font-weight: 200; letter-spacing: 5px; text-decoration: none; color: #fff; font-size: 1.2rem; text-transform: uppercase; }
 
         .nav-right { display: flex; align-items: center; gap: 30px; }
         
-        .lang-switcher { display: flex; gap: 12px; font-size: 0.7rem; border-right: 1px solid #333; padding-right: 20px; }
-        .lang-btn { cursor: pointer; color: var(--text-dim); transition: 0.3s; }
-        .lang-btn.active { color: #fff; font-weight: bold; }
+        .lang-switcher { display: flex; gap: 12px; font-size: 0.75rem; border-right: 1px solid #333; padding-right: 20px; }
+        .lang-btn { cursor: pointer; color: var(--text-dim); transition: 0.3s; text-transform: uppercase; }
+        .lang-btn.active { color: #fff; font-weight: 700; border-bottom: 1px solid #fff; }
 
         .nav-links a {
             text-decoration: none; color: var(--text-dim); font-size: 0.75rem;
@@ -75,130 +66,82 @@
         }
         .nav-links a:hover { color: #fff; }
 
-        .btn-contact { 
-            background: #fff; 
-            color: #000 !important; 
-            padding: 10px 20px; 
-            border-radius: 2px; 
-            font-weight: 600; 
-        }
+        .btn-contact { background: #fff; color: #000 !important; padding: 10px 20px; border-radius: 2px; font-weight: 600; }
 
         /* ГЛАВНЫЙ ЭКРАН */
         header.hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; background: #000;
+            text-align: center; padding: 0 20px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
         }
 
-        header h1 { 
-            font-size: clamp(2.5rem, 10vw, 6rem); 
-            font-weight: 100; 
-            letter-spacing: 0.3em; 
-            margin-bottom: 20px; 
-        }
-
-        .subtitle { 
-            letter-spacing: 8px; 
-            color: #666; 
-            text-transform: uppercase; 
-            font-size: 0.8rem; 
-        }
+        h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 100; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 15px; }
+        .subtitle { letter-spacing: 8px; color: #555; text-transform: uppercase; font-size: 0.85rem; }
 
         /* СЕКЦИИ */
         section { max-width: 1400px; margin: 0 auto; padding: 100px 40px; }
-        h2 { 
-            font-size: 1.5rem; 
-            font-weight: 200; 
-            margin-bottom: 60px; 
-            letter-spacing: 0.3em; 
-            text-transform: uppercase; 
-            border-left: 2px solid #fff;
-            padding-left: 25px;
-        }
+        h2 { font-size: 1.4rem; font-weight: 200; margin-bottom: 50px; letter-spacing: 0.3em; text-transform: uppercase; border-left: 2px solid #fff; padding-left: 25px; }
 
         /* СОФТ */
-        .software-list {
+        .software-grid {
             display: flex;
-            gap: 50px;
+            gap: 40px;
             flex-wrap: wrap;
             margin-top: 40px;
         }
-
-        .soft-card {
+        .soft-item {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             color: var(--text-dim);
-            transition: 0.4s;
+            transition: var(--transition);
         }
-
-        .soft-card i { font-size: 2rem; }
-        .soft-card:hover { color: #fff; transform: translateY(-5px); }
-        .soft-card span { font-size: 0.9rem; letter-spacing: 1px; }
+        .soft-item:hover { color: #fff; transform: translateY(-3px); }
+        .soft-icon { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+        .soft-name { font-size: 0.9rem; letter-spacing: 1px; }
 
         /* ГАЛЕРЕЯ */
         .projects-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
-            gap: 20px; 
+            gap: 25px; 
         }
-
-        .project-item { 
+        .project-card { 
             position: relative; 
-            aspect-ratio: 16 / 9; 
+            aspect-ratio: 16 / 10; 
+            background: #111; 
             overflow: hidden; 
-            background: #111;
-            cursor: pointer;
+            cursor: pointer; 
         }
-
-        .project-item img { 
-            width: 100%; height: 100%; 
-            object-fit: cover; 
-            transition: 0.8s scale cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: brightness(0.8);
-        }
-
-        .project-item:hover img { scale: 1.1; filter: brightness(1); }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 1s cubic-bezier(0.165, 0.84, 0.44, 1); filter: brightness(0.7); }
+        .project-card:hover img { transform: scale(1.08); filter: brightness(1); }
 
         /* КОНТАКТЫ */
-        .contact-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 50px; 
-        }
-
-        .contact-box h3 { 
-            font-size: 0.7rem; 
+        .contacts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; }
+        .contact-group h3 { 
+            font-size: 0.8rem; 
             text-transform: uppercase; 
-            color: #444; 
+            color: #777; 
             letter-spacing: 3px; 
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        .contact-group a, .contact-group p { display: block; color: #fff; text-decoration: none; font-size: 1.2rem; margin-bottom: 12px; transition: 0.3s; }
+        .contact-group a:hover { opacity: 0.6; }
 
-        .contact-box a, .contact-box p { 
-            display: block; 
-            color: #fff; 
-            text-decoration: none; 
-            font-size: 1.2rem; 
-            margin-bottom: 10px; 
-        }
-
-        /* МОДАЛЬНОЕ ОКНО */
-        .modal { 
-            position: fixed; inset: 0; 
-            background: rgba(0,0,0,0.95); 
-            display: none; 
-            justify-content: center; align-items: center; 
-            z-index: 2000; padding: 40px;
-        }
+        /* МОДАЛКА */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; cursor: pointer; }
         .modal.active { display: flex; }
         .modal img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        footer { padding: 80px 40px; text-align: center; border-top: 1px solid #111; color: #333; font-size: 0.8rem; letter-spacing: 2px; }
+        footer { padding: 80px 40px; text-align: center; color: #333; font-size: 0.75rem; border-top: 1px solid #111; letter-spacing: 2px; }
 
         @media (max-width: 768px) {
             .nav-links a:not(.btn-contact) { display: none; }
-            .nav-container { padding: 0 20px; }
+            section { padding: 60px 20px; }
             .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -215,9 +158,9 @@
                 <span id="en" class="lang-btn" onclick="setLang('en')">EN</span>
             </div>
             <div class="nav-links">
-                <a href="#work" data-key="m_work">Работы</a>
-                <a href="#about" data-key="m_about">О нас</a>
-                <a href="#contacts" class="btn-contact" data-key="m_contact">Связаться</a>
+                <a href="#work" data-key="n_work">Проекты</a>
+                <a href="#about" data-key="n_about">Студия</a>
+                <a href="#contacts" class="btn-contact" data-key="n_contact">Связаться</a>
             </div>
         </div>
     </div>
@@ -225,52 +168,72 @@
 
 <header class="hero">
     <h1>VIZAR 3D</h1>
-    <p class="subtitle" data-key="h_sub">Architectural Visualization Studio</p>
+    <div class="subtitle" data-key="h_sub">Architectural Visualization Studio</div>
 </header>
 
 <section id="work">
-    <h2 data-key="m_work">Наши проекты</h2>
-    <div class="projects-grid" id="gallery-container">
-        </div>
+    <h2 data-key="n_work">Проекты</h2>
+    <div class="projects-grid" id="main-gallery"></div>
 </section>
 
 <section id="about">
-    <h2 data-key="m_about">Студия</h2>
-    <p style="max-width: 700px; font-size: 1.2rem; color: #888;" data-key="a_desc">
-        Мы создаем высококачественные 3D изображения для архитекторов и дизайнеров, превращая чертежи в живую реальность.
+    <h2 data-key="n_about">О студии</h2>
+    <p style="max-width: 800px; font-size: 1.2rem; color: var(--text-dim); margin-bottom: 40px;" data-key="a_text">
+        Профессиональная команда визуализаторов. Мы создаем изображения, которые помогают продавать архитектурные идеи.
     </p>
-    
-    <div class="software-list">
-        <div class="soft-card"><i class="fa-solid fa-cube"></i><span>3ds Max</span></div>
-        <div class="soft-card"><i class="fa-solid fa-sun"></i><span>Corona Renderer</span></div>
-        <div class="soft-card"><i class="fa-solid fa-pen-ruler"></i><span>AutoCAD</span></div>
-        <div class="soft-card"><i class="fa-brands fa-adobe"></i><span>Photoshop</span></div>
+
+    <div class="software-grid">
+        <div class="soft-item">
+            <svg class="soft-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            <span class="soft-name">3ds Max</span>
+        </div>
+        <div class="soft-item">
+            <svg class="soft-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+            <span class="soft-name">Corona Renderer</span>
+        </div>
+        <div class="soft-item">
+            <svg class="soft-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            <span class="soft-name">AutoCAD</span>
+        </div>
+        <div class="soft-item">
+            <svg class="soft-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 8h2a2 2 0 1 1 0 4H9V8zM9 16v-4"></path><path d="M17 16a2 2 0 0 1-2-2v-1"></path></svg>
+            <span class="soft-name">Photoshop</span>
+        </div>
     </div>
 </section>
 
 <section id="contacts">
-    <h2 data-key="m_contact">Контакты</h2>
-    <div class="contact-grid">
-        <div class="contact-box">
-            <h3 data-key="c_call">Телефон</h3>
+    <h2 data-key="n_contact">Контакты</h2>
+    <div class="contacts-container">
+        <div class="contact-group">
+            <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span data-key="c_phone">Телефон</span>
+            </h3>
             <a href="tel:+99801409049">+998 01 409 049 (Наиль)</a>
             <a href="tel:+998979828203">+998 97 982 8203 (Комилжон)</a>
         </div>
-        <div class="contact-box">
-            <h3>Telegram</h3>
+        <div class="contact-group">
+            <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <span>Telegram</span>
+            </h3>
             <a href="https://t.me/nail0993" target="_blank">@nail0993</a>
             <a href="https://t.me/komiljon_arx" target="_blank">@komiljon_arx</a>
         </div>
-        <div class="contact-box">
-            <h3 data-key="c_loc">Локация</h3>
-            <p>Узбекистан, Андижанская область</p>
-            <p>noilkhakimov@gmail.com</p>
+        <div class="contact-group">
+            <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span data-key="c_loc">Локация</span>
+            </h3>
+            <p>Узбекистан, Андижанская обл.</p>
+            <p style="font-size: 0.9rem; color: #444;">noilkhakimov@gmail.com</p>
         </div>
     </div>
 </section>
 
-<div class="modal" id="modal" onclick="this.classList.remove('active')">
-    <img src="" id="modal-img">
+<div class="modal" id="v-modal" onclick="this.classList.remove('active')">
+    <img src="" id="v-modal-img">
 </div>
 
 <footer>
@@ -278,54 +241,52 @@
 </footer>
 
 <script>
-    const translations = {
+    const content = {
         ru: {
-            m_work: "Проекты", m_about: "О нас", m_contact: "Контакты",
+            n_work: "Проекты", n_about: "О студии", n_contact: "Контакты",
             h_sub: "Студия архитектурной визуализации",
-            a_desc: "Мы создаем высококачественные 3D изображения для архитекторов и дизайнеров, превращая чертежи в живую реальность.",
-            c_call: "Позвонить", c_loc: "Адрес", f_text: "Все права защищены."
+            a_text: "Профессиональная команда визуализаторов. Мы создаем изображения, которые помогают продавать архитектурные идеи.",
+            c_phone: "Позвонить", c_loc: "Адрес", f_text: "Все права защищены."
         },
         uz: {
-            m_work: "Loyihalar", m_about: "Biz haqimizda", m_contact: "Kontaktlar",
+            n_work: "Loyihalar", n_about: "Studiya haqida", n_contact: "Kontaktlar",
             h_sub: "Arxitektura vizualizatsiyasi studiyasi",
-            a_desc: "Biz arxitektorlar va dizaynerlar uchun yuqori sifatli 3D tasvirlarni yaratamiz, chizmalarni hayotga aylantiramiz.",
-            c_call: "Telefon", c_loc: "Manzil", f_text: "Barcha huquqlar himoyalangan."
+            a_text: "Professional vizualizatorlar jamoasi. Biz arxitektura g'oyalarini sotishga yordam beradigan tasvirlarni yaratamiz.",
+            c_phone: "Telefon", c_loc: "Manzil", f_text: "Barcha huquqlar himoyalangan."
         },
         en: {
-            m_work: "Projects", m_about: "About", m_contact: "Contacts",
+            n_work: "Projects", n_about: "Studio", n_contact: "Contact",
             h_sub: "Architectural Visualization Studio",
-            a_desc: "We create high-end 3D imagery for architects and developers, bringing blueprints to life.",
-            c_call: "Call Us", c_loc: "Location", f_text: "All rights reserved."
+            a_text: "Professional team of 3D artists. We create imagery that helps sell architectural concepts.",
+            c_phone: "Call Us", c_loc: "Location", f_text: "All rights reserved."
         }
     };
 
-    // ГЕНЕРАЦИЯ 10 КАРТИНОК
-    const container = document.getElementById('gallery-container');
-    for (let i = 1; i <= 10; i++) {
-        const item = document.createElement('div');
-        item.className = 'project-item';
-        item.innerHTML = `<img src="img/img${i}.jpg" alt="Vizar3D Project ${i}" loading="lazy">`;
-        item.onclick = () => {
-            document.getElementById('modal-img').src = `img/img${i}.jpg`;
-            document.getElementById('modal').classList.add('active');
+    const gallery = document.getElementById('main-gallery');
+    for(let i=1; i<=10; i++) {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.innerHTML = `<img src="img/img${i}.jpg" alt="Vizar 3D Project" loading="lazy">`;
+        card.onclick = () => {
+            document.getElementById('v-modal-img').src = `img/img${i}.jpg`;
+            document.getElementById('v-modal').classList.add('active');
         };
-        container.appendChild(item);
+        gallery.appendChild(card);
     }
 
     function setLang(lang) {
         document.querySelectorAll('[data-key]').forEach(el => {
-            el.innerText = translations[lang][el.getAttribute('data-key')];
+            el.innerText = content[lang][el.getAttribute('data-key')];
         });
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(lang).classList.add('active');
-        localStorage.setItem('vizar_lang', lang);
+        localStorage.setItem('vizar_pref_lang', lang);
     }
 
     window.onload = () => {
-        const saved = localStorage.getItem('vizar_lang') || 'ru';
+        const saved = localStorage.getItem('vizar_pref_lang') || 'ru';
         setLang(saved);
     };
 </script>
-
 </body>
 </html>
