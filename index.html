@@ -62,33 +62,6 @@
 
         .btn-contact { background: #fff; color: #000 !important; padding: 8px 16px; border-radius: 2px; font-weight: 600; }
 
-        /* ФИЛЬТРЫ КАТЕГОРИЙ (ВКЛАДКИ) */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: transparent;
-            border: 1px solid #222;
-            color: var(--text-dim);
-            padding: 8px 20px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            transition: 0.3s;
-            border-radius: 20px;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            border-color: #fff;
-            color: #fff;
-        }
-
         /* ГЛАВНЫЙ ЭКРАН */
         header.hero {
             height: 100vh;
@@ -100,16 +73,16 @@
         h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 200; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
         .subtitle { letter-spacing: 5px; color: #555; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* ГРИД ПРОЕКТОВ */
+        /* СЕКЦИИ */
         section { max-width: 1400px; margin: 0 auto; padding: 100px 40px; }
         h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 50px; letter-spacing: 0.2em; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 20px; }
 
+        /* ГАЛЕРЕЯ (СЕТКА) */
         .projects-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
             gap: 30px; 
         }
-        
         .project-card { 
             position: relative; 
             aspect-ratio: 16 / 10; 
@@ -119,8 +92,7 @@
             cursor: pointer; 
             transition: var(--transition);
         }
-
-        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); filter: grayscale(30%); }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); filter: grayscale(20%); }
         .project-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
 
         .project-overlay {
@@ -178,14 +150,6 @@
 
 <section id="work">
     <h2 data-key="s_work">Проекты</h2>
-    
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterProjects('all')" data-key="f_all">Все</button>
-        <button class="filter-btn" onclick="filterProjects('ext')" data-key="f_ext">Экстерьер</button>
-        <button class="filter-btn" onclick="filterProjects('int')" data-key="f_int">Интерьер</button>
-        <button class="filter-btn" onclick="filterProjects('dwg')" data-key="f_dwg">Чертежи</button>
-    </div>
-
     <div class="projects-grid" id="grid"></div>
 </section>
 
@@ -221,7 +185,7 @@
     <img src="" alt="Full view" id="lightbox-img">
 </div>
 
-<footer>© 2026 VIZAR 3D</footer>
+<footer>© 2026 VIZAR 3D. <span data-key="f_rights">Все права защищены.</span></footer>
 
 <script>
     const langData = {
@@ -229,63 +193,55 @@
             n_work: "Проекты", n_about: "О нас", n_contact: "Контакты",
             h_sub: "Архитектурная визуализация • Андижанская область",
             s_work: "Проекты", s_about: "О студии", s_contact: "Контакты",
-            f_all: "Все", f_ext: "Экстерьер", f_int: "Интерьер", f_dwg: "Чертежи",
             a_text: "Команда профессионалов в сфере 3D-визуализации. Мы помогаем архитекторам и девелоперам увидеть будущие проекты в фотореалистичном качестве.",
-            c_phone: "Телефоны", c_mail: "Email & Локация", c_loc: "Узбекистан, Андижанская обл."
+            c_phone: "Телефоны", c_mail: "Email & Локация", c_loc: "Узбекистан, Андижанская обл.", f_rights: "Все права защищены."
         },
         uz: {
             n_work: "Loyihalar", n_about: "Biz haqimizda", n_contact: "Kontaktlar",
             h_sub: "Arxitektura vizualizatsiyasi • Andijon viloyati",
             s_work: "Loyihalar", s_about: "Studiya haqida", s_contact: "Kontaktlar",
-            f_all: "Barchasi", f_ext: "Eksteryer", f_int: "Interyer", f_dwg: "Chizmalar",
-            a_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz arxitektorlarga yordam beramiz.",
-            c_phone: "Telefonlar", c_mail: "Email va Manzil", c_loc: "O'zbekiston, Andijon viloyati"
+            a_text: "3D vizualizatsiya sohasidagi mutaxassislar jamoasi. Biz kelajakdagi loyihalarni ko'rishga yordam beramiz.",
+            c_phone: "Telefonlar", c_mail: "Email va Manzil", c_loc: "O'zbekiston, Andijon viloyati", f_rights: "Barcha huquqlar himoyalangan."
         },
         en: {
             n_work: "Projects", n_about: "About", n_contact: "Contact",
             h_sub: "Architectural Visualization • Andijan Region",
             s_work: "Projects", s_about: "About Us", s_contact: "Contacts",
-            f_all: "All", f_ext: "Exterior", f_int: "Interior", f_dwg: "Drawings",
-            a_text: "Professional 3D visualization team. We help architects see their projects.",
-            c_phone: "Phones", c_mail: "Email & Location", c_loc: "Uzbekistan, Andijan region"
+            a_text: "Professional 3D visualization team. We help developers see future projects in photorealistic quality.",
+            c_phone: "Phones", c_mail: "Email & Location", c_loc: "Uzbekistan, Andijan region", f_rights: "All rights reserved."
         }
     };
 
-    // ВОТ ЗДЕСЬ ТВОИ КАРТИНКИ И ИХ КАТЕГОРИИ
+    // СПИСОК ИЗ 10 КАРТИНОК
     const gallery = [
-        { file: "hero.jpg", title: "Экстерьер дома", category: "ext" },
-        { file: "img1.jpg", title: "Современный фасад", category: "ext" },
-        { file: "img2.jpg", title: "Гостиная", category: "int" },
-        { file: "img3.jpg", title: "Чертеж проекта", category: "dwg" },
-        { file: "img4.jpg", title: "Кухня", category: "int" },
-        { file: "img5.jpg", title: "Вилла", category: "ext" },
-        { file: "img6.jpg", title: "План этажа", category: "dwg" }
+        { file: "img1.jpg", title: "Project 1" },
+        { file: "img2.jpg", title: "Project 2" },
+        { file: "img3.jpg", title: "Project 3" },
+        { file: "img4.jpg", title: "Project 4" },
+        { file: "img5.jpg", title: "Project 5" },
+        { file: "img6.jpg", title: "Project 6" },
+        { file: "img7.jpg", title: "Project 7" },
+        { file: "img8.jpg", title: "Project 8" },
+        { file: "img9.jpg", title: "Project 9" },
+        { file: "img10.jpg", title: "Project 10" }
     ];
 
     const grid = document.getElementById('grid');
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightbox-img');
 
-    function renderGallery(filter = 'all') {
+    function renderGallery() {
         grid.innerHTML = '';
         gallery.forEach(item => {
-            if (filter === 'all' || item.category === filter) {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.innerHTML = `
-                    <img src="img/${item.file}" alt="${item.title}">
-                    <div class="project-overlay"><div style="padding:20px;">${item.title}</div></div>
-                `;
-                card.onclick = () => { lbImg.src = `img/${item.file}`; lightbox.classList.add('active'); };
-                grid.appendChild(card);
-            }
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <img src="img/${item.file}" alt="${item.title}" loading="lazy">
+                <div class="project-overlay"><div style="padding:20px; font-size:0.8rem; text-transform:uppercase;">${item.title}</div></div>
+            `;
+            card.onclick = () => { lbImg.src = `img/${item.file}`; lightbox.classList.add('active'); };
+            grid.appendChild(card);
         });
-    }
-
-    function filterProjects(cat) {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        renderGallery(cat);
     }
 
     function changeLang(lang) {
