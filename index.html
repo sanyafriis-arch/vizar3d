@@ -29,7 +29,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%;
             z-index: 1000;
-            padding: 20px 0;
+            padding: 15px 0;
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -57,17 +57,41 @@
         }
 
         .logo-nav-icon {
-            width: 22px;
-            height: 22px;
-            stroke: #fff;
-            fill: none;
-            stroke-width: 2.5;
+            width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.5;
         }
 
         .nav-right { display: flex; align-items: center; gap: 30px; }
-        .lang-switcher { display: flex; gap: 12px; font-size: 0.75rem; border-right: 1px solid #333; padding-right: 20px; }
-        .lang-btn { cursor: pointer; color: var(--text-dim); transition: 0.3s; text-transform: uppercase; }
-        .lang-btn.active { color: #fff; font-weight: 700; border-bottom: 1px solid #fff; }
+
+        /* ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ С ФЛАГАМИ */
+        .lang-switcher { 
+            display: flex; 
+            gap: 15px; 
+            border-right: 1px solid #333; 
+            padding-right: 20px; 
+        }
+        .lang-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .flag {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: grayscale(100%); /* По умолчанию серые */
+            opacity: 0.5;
+        }
+        .lang-btn {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            font-weight: 600;
+        }
+        .lang-item.active .flag { filter: grayscale(0); opacity: 1; } /* Активный флаг цветной */
+        .lang-item.active .lang-btn { color: #fff; }
 
         .nav-links a {
             text-decoration: none; color: var(--text-dim); font-size: 0.75rem;
@@ -112,13 +136,6 @@
         section { max-width: 1400px; margin: 0 auto; padding: 100px 40px; }
         h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 50px; letter-spacing: 0.2em; text-transform: uppercase; border-left: 4px solid #fff; padding-left: 20px; }
 
-        /* СОФТ */
-        .software-grid { display: flex; gap: 40px; flex-wrap: wrap; }
-        .soft-item { display: flex; align-items: center; gap: 12px; color: var(--text-dim); transition: var(--transition); }
-        .soft-item:hover { color: #fff; transform: translateY(-3px); }
-        .soft-icon { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 2; }
-        .soft-name { font-size: 0.9rem; font-weight: 600; }
-
         /* ГАЛЕРЕЯ */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 25px; }
         .project-card { aspect-ratio: 16 / 10; background: #111; overflow: hidden; cursor: pointer; }
@@ -133,7 +150,6 @@
         }
         .contact-group a, .contact-group p { display: block; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
 
-        /* МОДАЛКА */
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
         .modal.active { display: flex; }
         .modal img { max-width: 100%; max-height: 100%; object-fit: contain; }
@@ -144,7 +160,7 @@
             .nav-links a:not(.btn-contact) { display: none; }
             h1 { font-size: 3rem; }
             .logo-subtitle { letter-spacing: 5px; font-size: 0.6rem; }
-            .main-logo-icon { width: 100px; height: 100px; }
+            .nav-container { padding: 0 20px; }
         }
     </style>
 </head>
@@ -158,13 +174,21 @@
         </a>
         <div class="nav-right">
             <div class="lang-switcher">
-                <span id="ru" class="lang-btn active" onclick="setLang('ru')">RU</span>
-                <span id="uz" class="lang-btn" onclick="setLang('uz')">UZ</span>
-                <span id="en" class="lang-btn" onclick="setLang('en')">EN</span>
+                <div id="ru-item" class="lang-item active" onclick="setLang('ru')">
+                    <img src="https://flagcdn.com/w40/ru.png" class="flag" alt="RU">
+                    <span class="lang-btn">RU</span>
+                </div>
+                <div id="uz-item" class="lang-item" onclick="setLang('uz')">
+                    <img src="https://flagcdn.com/w40/uz.png" class="flag" alt="UZ">
+                    <span class="lang-btn">UZ</span>
+                </div>
+                <div id="en-item" class="lang-item" onclick="setLang('en')">
+                    <img src="https://flagcdn.com/w40/gb.png" class="flag" alt="EN">
+                    <span class="lang-btn">EN</span>
+                </div>
             </div>
             <div class="nav-links">
                 <a href="#work" data-key="n_work">Проекты</a>
-                <a href="#about" data-key="n_about">Студия</a>
                 <a href="#contacts" class="btn-contact" data-key="n_contact">Связаться</a>
             </div>
         </div>
@@ -191,39 +215,13 @@
     <div class="projects-grid" id="main-gallery"></div>
 </section>
 
-<section id="about">
-    <h2 data-key="n_about">О студии</h2>
-    <p style="max-width: 800px; font-size: 1.2rem; color: var(--text-dim); margin-bottom: 40px; font-weight: 500;" data-key="a_text">
-        Профессиональная команда визуализаторов. Мы создаем изображения, которые помогают продавать архитектурные идеи.
-    </p>
-
-    <div class="software-grid">
-        <div class="soft-item">
-            <svg class="soft-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-            <span class="soft-name">3ds Max</span>
-        </div>
-        <div class="soft-item">
-            <svg class="soft-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg>
-            <span class="soft-name">Corona</span>
-        </div>
-        <div class="soft-item">
-            <svg class="soft-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-            <span class="soft-name">AutoCAD</span>
-        </div>
-        <div class="soft-item">
-            <svg class="soft-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 8h2a2 2 0 1 1 0 4H9V8zM9 16v-4"></path><path d="M17 16a2 2 0 0 1-2-2v-1"></path></svg>
-            <span class="soft-name">Photoshop</span>
-        </div>
-    </div>
-</section>
-
 <section id="contacts">
     <h2 data-key="n_contact">Контакты</h2>
     <div class="contacts-container">
         <div class="contact-group">
             <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span data-key="c_phone">Телефон</span></h3>
-            <a href="tel:+998901409049">+998 90 140 90 49 (Наиль)</a>
-            <a href="tel:+998979828203">+998 97 982 8203 (Комилжон)</a>
+            <a href="tel:+998901409049">+998 90 140 90 49</a>
+            <a href="tel:+998979828203">+998 97 982 8203</a>
         </div>
         <div class="contact-group">
             <h3><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg><span>Telegram</span></h3>
@@ -247,21 +245,9 @@
 
 <script>
     const content = {
-        ru: {
-            n_work: "Проекты", n_about: "Студия", n_contact: "Контакты",
-            a_text: "Профессиональная команда визуализаторов. Мы создаем изображения, которые помогают продавать архитектурные идеи.",
-            c_phone: "Позвонить", c_loc: "Адрес", f_text: "ВСЕ ПРАВА ЗАЩИЩЕНЫ."
-        },
-        uz: {
-            n_work: "Loyihalar", n_about: "Studiya", n_contact: "Kontaktlar",
-            a_text: "Professional vizualizatorlar jamoasi. Biz arxitektura g'oyalarini sotishga yordam beradigan tasvirlarni yaratamiz.",
-            c_phone: "Telefon", c_loc: "Manzil", f_text: "BARCHA HUQUQLAR HIMOYALANGAN."
-        },
-        en: {
-            n_work: "Projects", n_about: "Studio", n_contact: "Contact",
-            a_text: "Professional team of 3D artists. We create imagery that helps sell architectural concepts.",
-            c_phone: "Call", c_loc: "Location", f_text: "ALL RIGHTS RESERVED."
-        }
+        ru: { n_work: "Проекты", n_contact: "Контакты", c_phone: "Телефон", c_loc: "Адрес", f_text: "ВСЕ ПРАВА ЗАЩИЩЕНЫ." },
+        uz: { n_work: "Loyihalar", n_contact: "Kontaktlar", c_phone: "Telefon", c_loc: "Manzil", f_text: "BARCHA HUQUQLAR HIMOYALANGAN." },
+        en: { n_work: "Projects", n_contact: "Contact", c_phone: "Call", c_loc: "Location", f_text: "ALL RIGHTS RESERVED." }
     };
 
     const gallery = document.getElementById('main-gallery');
@@ -280,8 +266,8 @@
         document.querySelectorAll('[data-key]').forEach(el => {
             el.innerText = content[lang][el.getAttribute('data-key')];
         });
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(lang).classList.add('active');
+        document.querySelectorAll('.lang-item').forEach(b => b.classList.remove('active'));
+        document.getElementById(lang + '-item').classList.add('active');
         localStorage.setItem('vizar_lang', lang);
     }
 
